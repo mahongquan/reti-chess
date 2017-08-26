@@ -1,4 +1,4 @@
-import keyMirror from 'react/lib/keyMirror';
+var keyMirror = require('keymirror')
 
 
 export default keyMirror({

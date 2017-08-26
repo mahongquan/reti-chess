@@ -1,4 +1,4 @@
-import React from 'react/addons';
+import React from 'react';
 import omit from 'lodash.omit';
 import cx from 'classnames';
 import {Seq, Repeat, List, Set} from 'immutable';
@@ -8,7 +8,7 @@ import GameActions from '../actions/GameActions';
 import ChessPieces from '../constants/ChessPieces';
 import onGameChange from '../mixins/onGameChange';
 import maybeReverse from '../mixins/maybeReverse';
-
+var PureRenderMixin = require('react-addons-pure-render-mixin');
 
 const FILES = Seq.Indexed('abcdefgh');
 const RANKS = Seq.Indexed('12345678');
@@ -23,7 +23,7 @@ const Chessboard = React.createClass({
     gameOver: React.PropTypes.bool.isRequired,
     isOpponentAvailable: React.PropTypes.bool.isRequired
   },
-  mixins: [React.addons.PureRenderMixin, maybeReverse],
+  mixins: [PureRenderMixin, maybeReverse],
 
   getInitialState() {
     const state = GameStore.getChessboardState();

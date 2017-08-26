@@ -1,10 +1,10 @@
-import React from 'react/addons';
+import React from 'react';
 import omit from 'lodash.omit';
 
 import Clock from './Clock';
 import ChatStore from '../stores/ChatStore';
 import ChatActions from '../actions/ChatActions';
-
+var PureRenderMixin = require('react-addons-pure-render-mixin');
 
 const GameHeader = React.createClass({
   
@@ -16,7 +16,7 @@ const GameHeader = React.createClass({
     gameOver: React.PropTypes.bool.isRequired,
     isOpponentAvailable: React.PropTypes.bool.isRequired
   },
-  mixins: [React.addons.PureRenderMixin],
+  mixins: [PureRenderMixin],
 
   getInitialState() {
     return omit(ChatStore.getState(), 'messages');

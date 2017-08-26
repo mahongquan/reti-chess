@@ -1,12 +1,12 @@
-import React from 'react/addons';
+import React from 'react';
 
 import GameStore from '../stores/GameStore';
 import onGameChange from '../mixins/onGameChange';
-
+var PureRenderMixin = require('react-addons-pure-render-mixin');
 
 const TableOfMoves = React.createClass({
   
-  mixins: [React.addons.PureRenderMixin, onGameChange],
+  mixins: [PureRenderMixin, onGameChange],
 
   getInitialState() {
     return {

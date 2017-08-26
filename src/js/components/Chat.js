@@ -1,8 +1,8 @@
-import React from 'react/addons';
+import React from 'react';
 
 import ChatStore from '../stores/ChatStore';
 import ChatActions from '../actions/ChatActions';
-
+var PureRenderMixin = require('react-addons-pure-render-mixin');
 
 const Chat = React.createClass({
   
@@ -14,7 +14,7 @@ const Chat = React.createClass({
     isOpponentAvailable: React.PropTypes.bool.isRequired,
     openModal: React.PropTypes.func.isRequired
   },
-  mixins: [React.addons.PureRenderMixin],
+  mixins: [PureRenderMixin],
 
   getInitialState() {
     const state = ChatStore.getState();

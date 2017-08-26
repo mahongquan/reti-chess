@@ -4,12 +4,12 @@ import fs from 'fs';
 import React from 'react';
 import Index from '../src/js/components/Index';
 import GameInterface from '../src/js/components/GameInterface';
-
+import ReactDOMServer from 'react-dom/server'
 const router = express.Router();
 
 router.get('/', (req, res) => {
   res.render('index', {
-    content: React.renderToString(<Index io={{}} />)
+    content: ReactDOMServer.renderToString(<Index io={{}} />)
   });
 });
 
@@ -25,7 +25,7 @@ router.get('/play/:token/:time/:inc', (req, res) => {
   ];
 
   res.render('play', {
-    content: React.renderToString(<GameInterface params={params} io={{}} />)
+    content: ReactDOMServer.renderToString(<GameInterface params={params} io={{}} />)
   });
 });
 

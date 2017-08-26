@@ -1,14 +1,14 @@
-import React from 'react/addons';
+import React from 'react';
 
 import cx from 'classnames';
 
-
+var PureRenderMixin = require('react-addons-pure-render-mixin');
 const Modal = React.createClass({
   
   propTypes: {
     data: React.PropTypes.object.isRequired
   },
-  mixins: [React.addons.PureRenderMixin],
+  mixins: [PureRenderMixin],
 
   componentDidUpdate() {
     const isOpen = this.props.data.get('open');

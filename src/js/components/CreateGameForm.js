@@ -1,5 +1,5 @@
-import React from 'react/addons';
-
+import React from 'react';
+var PureRenderMixin = require('react-addons-pure-render-mixin');
 const CreateGameForm = React.createClass({
 
   propTypes: {
@@ -9,7 +9,7 @@ const CreateGameForm = React.createClass({
     onChangeForm: React.PropTypes.func.isRequired,
     createGame: React.PropTypes.func.isRequired
   },
-  mixins: [React.addons.PureRenderMixin],
+  mixins: [PureRenderMixin],
 
   render() {
     return (

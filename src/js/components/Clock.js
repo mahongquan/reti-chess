@@ -1,9 +1,8 @@
-import React from 'react/addons';
+import React from 'react';
 
 import GameActions from '../actions/GameActions';
 
-
-const PureRenderMixin = React.addons.PureRenderMixin;
+var PureRenderMixin = require('react-addons-pure-render-mixin');
 
 const Clock = React.createClass({
   

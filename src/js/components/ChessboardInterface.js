@@ -1,4 +1,4 @@
-import React from 'react/addons';
+import React from 'react';
 import omit from 'lodash.omit';
 
 import GameStore from '../stores/GameStore';
@@ -7,7 +7,7 @@ import onGameChange from '../mixins/onGameChange';
 import Chessboard from './Chessboard';
 import CapturedPieces from './CapturedPieces';
 import TableOfMoves from './TableOfMoves';
-
+var PureRenderMixin = require('react-addons-pure-render-mixin');
 
 const ChessboardInterface = React.createClass({
   
@@ -19,7 +19,7 @@ const ChessboardInterface = React.createClass({
     gameOver: React.PropTypes.object.isRequired,
     isOpponentAvailable: React.PropTypes.bool.isRequired
   },
-  mixins: [React.addons.PureRenderMixin, onGameChange],
+  mixins: [PureRenderMixin, onGameChange],
 
   getInitialState() {
     return GameStore.getState();

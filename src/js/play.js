@@ -1,4 +1,4 @@
-import React from 'react';
+import React from 'react/addons';
 
 import io from './io';
 import GameInterface from './components/GameInterface';

@@ -1,4 +1,4 @@
-import React from 'react/addons';
+import React from 'react';
 import {Map} from 'immutable';
 
 import GameHeader from './GameHeader';
