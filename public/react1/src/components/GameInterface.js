@@ -50,7 +50,7 @@ class GameInterface extends React.Component{
     io.emit('join', {
       token: params.token,
       time: params.time * 60,
-      inc: params.inc
+      inc: parseInt(params.inc,10)
     });
 
     io.on('joined', data => {

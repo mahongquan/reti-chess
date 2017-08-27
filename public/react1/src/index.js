@@ -4,7 +4,7 @@ import Index from './components/Index';
 import io from 'socket.io-client';
 import { Router, Route, hashHistory } from 'react-router'
 import GameInterface from './components/GameInterface';
-var socket = io.connect("http://127.0.0.1:8000");
+var socket = io.connect("http://127.0.0.1:3000");
 class App extends React.Component{
   constructor(){
     super();
@@ -34,12 +34,10 @@ class AppPlay extends React.Component{
 }
 
 ReactDOM.render(
-  <div>
-  <p>=================================</p>
   <Router history={hashHistory}>
     <Route path="/" component={App}/>
     <Route path="/play/:token/:time/:inc" component={AppPlay}/>
   </Router>
-  </div>,
+  ,
   document.getElementById('root')
 );

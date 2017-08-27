@@ -20,8 +20,7 @@ class GameHeader extends React.Component{
 
   constructor(){
     super();
-    this.state=ChatStore.getState();
-    omit(ChatStore.getState(), 'messages');//todo
+    this.state=omit(ChatStore.getState(), 'messages');//todo
   }
   componentDidMount() {
     ChatStore.on('change', this._onChatChange);

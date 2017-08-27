@@ -5,8 +5,8 @@ import {Seq, Repeat,  Set} from 'immutable';
 import GameStore from '../stores/GameStore';
 import GameActions from '../actions/GameActions';
 import ChessPieces from '../constants/ChessPieces';
-import onGameChange from '../mixins/onGameChange';
-import maybeReverse from '../mixins/maybeReverse';
+//import onGameChange from '../mixins/onGameChange';
+//import maybeReverse from '../mixins/maybeReverse';
 var PropTypes = require('prop-types');
 //var PureRenderMixin = require('react-addons-pure-render-mixin');
 
@@ -35,7 +35,7 @@ class Chessboard extends React.Component{
     };
   }
   componentDidMount() {
-    const {io, token} = this.props;
+    const {io} = this.props;
     GameStore.on('change', this._onGameChange);
     GameStore.on('new-move', this._onNewMove);
 
@@ -149,7 +149,7 @@ class Row extends React.Component{
   } 
 
   render() {
-    const {rank, placement, color} = this.props;
+    const {rank, placement} = this.props;
     const files = this._maybeReverse(FILES);
     const pieces = this._maybeReverse(placement.length < 8 ?
       Seq(placement).flatMap(piece => (

@@ -15,22 +15,16 @@ class Clock extends React.Component{
 
   constructor(){
     super();
-    console.log("Clock constructor");
-    console.log(this.props);
     this.state={
       white: 0,
       black: 0,
       inc: 0,
       countdown: null
-    };
+    }
   }
   componentDidMount=()=>{
-    //let time,inc;
-    console.log("Clock componentDidMount");
-    console.log(this.props);
-    let time=0,inc=0;
-    time= this.props.params.time;
-    inc= this.props.params.inc;
+    const {time, inc} = this.props.params;
+    
     this.state={
       white: time * 60,
       black: time * 60,

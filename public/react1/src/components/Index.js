@@ -1,7 +1,6 @@
 import React from 'react';
 import { Link } from 'react-router'
 import CreateGameForm from './CreateGameForm';
-import { browserHistory } from 'react-router'
 var PropTypes = require('prop-types');
 class Index extends React.Component{
   
@@ -21,9 +20,9 @@ class Index extends React.Component{
     const io = this.props.io;
     io.on('created', data => {
       const {time, inc} = this.state;
-      const loc = window.location;
-      const origin = loc.origin || `${loc.protocol}//${loc.hostname}` +
-         (loc.port ? ':' + loc.port : '');
+      // const loc = window.location;
+      // const origin = loc.origin || `${loc.protocol}//${loc.hostname}` +
+      //    (loc.port ? ':' + loc.port : '');
 
       this.setState({
         link: `/play/${data.token}/${time}/${inc}`,
@@ -71,7 +70,6 @@ class Index extends React.Component{
           </p>
           
         </div>
-        <button onClick={this.navi} >goto</button>
         <p>
           Click the button to create a game. Send the link to your friend.
           Once the link is opened your friend‘s browser, game should begin 

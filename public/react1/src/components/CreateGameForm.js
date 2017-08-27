@@ -13,6 +13,9 @@ class CreateGameForm extends React.Component{
   //mixins= [PureRenderMixin]
 
   render() {
+    const loc = window.location;
+    const origin = loc.origin || `${loc.protocol}//${loc.hostname}` +
+         (loc.port ? ':' + loc.port : '');
     return (
       <form onSubmit={this.props.createGame}>
         <fieldset>
@@ -42,7 +45,7 @@ class CreateGameForm extends React.Component{
         <input
           id="game-link"
           type="text"
-          value={this.props.link || 'Game link will be generated here.'}
+          value={this.props.link ?origin+"/#"+this.props.link :'Game link will be generated here.'}
           onClick={e => e.target.select()}
           readOnly />
         <button type="submit" className="btn">Play</button>

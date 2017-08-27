@@ -3,11 +3,11 @@ import omit from 'lodash.omit';
 
 import GameStore from '../stores/GameStore';
 import GameActions from '../actions/GameActions';
-import onGameChange from '../mixins/onGameChange';
+//import onGameChange from '../mixins/onGameChange';
 import Chessboard from './Chessboard';
 import CapturedPieces from './CapturedPieces';
 import TableOfMoves from './TableOfMoves';
-var PureRenderMixin = require('react-addons-pure-render-mixin');
+//var PureRenderMixin = require('react-addons-pure-render-mixin');
 var PropTypes = require('prop-types');
 class ChessboardInterface extends React.Component{
 //const ChessboardInterface = React.createClass({

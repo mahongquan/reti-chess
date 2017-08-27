@@ -12,7 +12,6 @@ io.sockets.on('connection', socket => {
   
   socket.on('start', data => {
     console.log('start');
-    //console.log(data);
     let token;
     const b = new Buffer(Math.random() + new Date().getTime() + socket.id);
     token = b.toString('base64').slice(12, 28);
@@ -37,7 +36,7 @@ io.sockets.on('connection', socket => {
 
   socket.on('join', data => {
     console.log("join");
-    //console.log(data);
+    console.log(data);
     const game = _games.get(data.token);
 
     if (!game) {
@@ -69,7 +68,7 @@ io.sockets.on('connection', socket => {
 
     // join room
     socket.join(data.token);
-
+    data.inc=parseInt(data.inc,10);
     _games = _games.updateIn([data.token, 'players'], players =>
       players.push(Map({
         socket: socket,
@@ -115,6 +114,8 @@ io.sockets.on('connection', socket => {
     maybeEmit('rematch-declined', {}, data.token, socket));
 
   socket.on('rematch-accept', data => {
+    console.log("rematch-accept");
+    console.log(data);
     if (!_games.has(data.token)) return;
 
     _games = _games.updateIn([data.token, 'players'], players =>
@@ -160,11 +161,15 @@ function runClock(color, token, socket) {
       clearInterval(_games.getIn([token, 'interval']));
       
       _games = _games
-        .updateIn([token, 'players', idx, 'time'], time =>
-          time += player.get('inc'))
+        .updateIn([token, 'players', idx, 'time'], (time) =>{
+          //console.log(player);
+          time += player.get('inc')
+          return time;
+        })
         .setIn([token, 'interval'], setInterval(() => {
           let timeLeft = 0;
           _games = _games.updateIn([token, 'players', idx, 'time'], time => {
+            //console.log(player);
             timeLeft = time - 1;
             return time - 1;
           });
