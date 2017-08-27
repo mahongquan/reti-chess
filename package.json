@@ -2,12 +2,13 @@
   "name": "retichess",
   "version": "0.4.1",
   "scripts": {
-    "start": "NODE_ENV=development node ./bin/www",
+    "start": "node ./bin/www",
     "test": "node ./node_modules/jasmine/bin/jasmine.js && jest",
     "build": "NODE_ENV=development gulp",
     "deploy": "NODE_ENV=production gulp"
   },
   "dependencies": {
+    "babel-polyfill": "^6.26.0",
     "babel-register": "^6.26.0",
     "body-parser": "^1.12.2",
     "chess.js": "jhlywa/chess.js",

@@ -5,10 +5,10 @@ import favicon from 'serve-favicon';
 import logger from 'morgan';
 
 import winston from './winston';
-import routes from './routes/routes';
+//import routes from './routes/routes';
 
 
-const rootDir = process.env.NODE_ENV === 'development' ? 'build' : 'dist';
+const rootDir = 'public'//process.env.NODE_ENV === 'development' ? 'src2' : 'build';
 const staticPath =  path.join(__dirname, rootDir);
 const app = express();
 
@@ -19,7 +19,7 @@ app.use(logger('dev'));
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({extended: true}));
 app.use(express.static(staticPath));
-app.use('/', routes);
+//app.use('/', routes);
 
 app.use((req, res, next) => {
   let err = new Error('Not Found');

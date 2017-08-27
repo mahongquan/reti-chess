@@ -1,15 +1,15 @@
 import React from 'react';
-var PureRenderMixin = require('react-addons-pure-render-mixin');
-
+//var PureRenderMixin = require('react-addons-pure-render-mixin');
+var PropTypes = require('prop-types');
 class CreateGameForm extends React.Component{
 
-  // static propTypes= {
-  //   link: React.PropTypes.string.isRequired,
-  //   time: React.PropTypes.string.isRequired,
-  //   inc: React.PropTypes.string.isRequired,
-  //   onChangeForm: React.PropTypes.func.isRequired,
-  //   createGame: React.PropTypes.func.isRequired
-  // }
+  static propTypes= {
+    link: PropTypes.string.isRequired,
+    time: PropTypes.string.isRequired,
+    inc: PropTypes.string.isRequired,
+    onChangeForm: PropTypes.func.isRequired,
+    createGame: PropTypes.func.isRequired
+  }
   //mixins= [PureRenderMixin]
 
   render() {

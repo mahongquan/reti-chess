@@ -16,7 +16,9 @@ router.get('/', (req, res) => {
 router.get('/about', (req, res) => {
   res.render('about');
 });
-
+router.get('/test', (req, res) => {
+  res.redirect('/css/main.css');
+});
 router.get('/play/:token/:time/:inc', (req, res) => {
   let params = [
     req.params.token,

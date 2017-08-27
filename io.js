@@ -11,6 +11,8 @@ var _games = Map();
 io.sockets.on('connection', socket => {
   
   socket.on('start', data => {
+    console.log('start');
+    //console.log(data);
     let token;
     const b = new Buffer(Math.random() + new Date().getTime() + socket.id);
     token = b.toString('base64').slice(12, 28);
@@ -34,6 +36,8 @@ io.sockets.on('connection', socket => {
   });
 
   socket.on('join', data => {
+    console.log("join");
+    //console.log(data);
     const game = _games.get(data.token);
 
     if (!game) {
@@ -73,8 +77,9 @@ io.sockets.on('connection', socket => {
         time: data.time - data.inc + 1,
         inc: data.inc
       })));
-
+    //console.log(game.get('creator'));
     game.get('creator').emit('ready');
+    console.log("emit ready");
     socket.emit('joined', {color: color});
 
     if (nOfPlayers === 1) {

@@ -1,14 +1,13 @@
 import React from 'react';
-
+import { Link } from 'react-router'
 import CreateGameForm from './CreateGameForm';
-import io from '../io';
-
-
+import { browserHistory } from 'react-router'
+var PropTypes = require('prop-types');
 class Index extends React.Component{
   
-  // static propTypes={
-  //   io: React.PropTypes.object.isRequired
-  // }
+   static propTypes={
+     io: PropTypes.object.isRequired
+   }
   constructor(){
     super();
     this.state={
@@ -20,28 +19,37 @@ class Index extends React.Component{
   }
   componentDidMount() {
     const io = this.props.io;
-
     io.on('created', data => {
       const {time, inc} = this.state;
       const loc = window.location;
-
       const origin = loc.origin || `${loc.protocol}//${loc.hostname}` +
-        (loc.port ? ':' + loc.port : '');
+         (loc.port ? ':' + loc.port : '');
 
       this.setState({
-        link: `${origin}/play/${data.token}/${time}/${inc}`,
+        link: `/play/${data.token}/${time}/${inc}`,
         hasExpired: false
       });
     });
     io.on('ready', () => {
-      window.location = this.state.link;
+      //window.location = this.state.link;
+      console.log("ready");
+      console.log(this.state.link);
+      //this.props.router.push(this.state.link)
+      this.navi();
     });
     io.on('token-expired', () => this.setState({hasExpired: true}));
   }
+  navi=()=>{
+    console.log("navi");
+    this.props.router.push(this.state.link);
+  }
   render() {
+    console.log("Index render");
+    console.log(this.state.link);
+    console.log(this.props);
     return (
       <div>
-        <img src="/img/knight.png"
+        <img src="/img/knight.png" alt="knight"
              width="122"
              height="122"
              className="knight" />
@@ -54,16 +62,16 @@ class Index extends React.Component{
             inc={this.state.inc}
             onChangeForm={this._onChangeForm}
             createGame={this._createGame} />
-            
           <p id="game-status">
-            {this.state.hasExpired ?
+            <Link to={this.state.link}>{this.state.hasExpired ?
               'Game link has expired, generate a new one'
             :this.state.link ?
               'Waiting for opponent to connect'
-            :null}
+            :null}</Link>            
           </p>
+          
         </div>
-
+        <button onClick={this.navi} >goto</button>
         <p>
           Click the button to create a game. Send the link to your friend.
           Once the link is opened your friend‘s browser, game should begin 
@@ -76,10 +84,11 @@ class Index extends React.Component{
     );
   }
 
-  _onChangeForm(e) {
+  _onChangeForm=(e)=> {
+    console.log(e);
     this.setState({[e.target.name]: e.target.value});
   }
-  _createGame(e) {
+  _createGame=(e)=>{
     e.preventDefault();
 
     const {time, inc} = this.state;
