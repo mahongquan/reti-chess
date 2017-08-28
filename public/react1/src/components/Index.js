@@ -1,5 +1,6 @@
 import React from 'react';
 import { Link } from 'react-router-dom'
+import { withRouter} from 'react-router-dom'
 import CreateGameForm from './CreateGameForm';
 var PropTypes = require('prop-types');
 class Index extends React.Component{
@@ -70,7 +71,6 @@ class Index extends React.Component{
           </p>
           
         </div>
-        <button onClick={this.navi}>gotoplay</button>
         <p>
           Click the button to create a game. Send the link to your friend.
           Once the link is opened your friend‘s browser, game should begin 
