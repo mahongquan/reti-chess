@@ -1,0 +1,51 @@
+<!doctype html>
+<html lang="zh-Hans">
+<head><title>Reti Chess</title><meta charset="utf-8"><meta name="robots" content="index, follow"><meta itemprop="name=Reti Chess"><meta author="Roman Matiasko"><meta name="description" content="A lightweight real-time chess app built in Node, Express, Socket.IO, React, Flux and Immutable."><meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="icon" type="image/png" href="./favicon.png">
+<link rel="stylesheet" href="./css/main.css">
+    <script src="/socket.io/socket.io.js"></script>
+    <script src="./react.min.js"></script>
+    <script src="./react-dom.min.js"></script>
+    <script src="./react-router-dom.min.js"></script>
+    <script src="./immutable.js"></script>
+    <script src="./Flux.js"></script>
+    <script src="./babel.min.js"></script>
+    <script src="./omit.js"></script>
+    <script src="./eventemitter2.js"></script>
+    <script src="./chess.js"></script>
+    <script src="./classnames.js"></script>
+    <script>
+console.log(window.EventEmitter2);
+var AppDispatcher=Object.assign(new Flux.Dispatcher(), {
+  // @param {object} action The data coming from the view.
+  handleViewAction: function(action) {
+    this.dispatch({
+      source: 'VIEW_ACTION',
+      action: action
+    });
+  }
+});
+var keyMirror = function(obj) {
+  var ret = {};
+  var key;
+  if (!(obj instanceof Object && !Array.isArray(obj))) {
+    throw new Error('keyMirror(...): Argument must be an object.');
+  }
+  for (key in obj) {
+    if (obj.hasOwnProperty(key)) {
+      ret[key] = key;
+    }
+  }
+  return ret;
+};
+    </script>
+</head>
+  <body>
+    <noscript>
+      You need to enable JavaScript to run this app.
+    </noscript>
+    <div id="app"></div>
+    <script type="text/babel" src="./app_chess.js">
+    </script>
+  </body>
+</html>
